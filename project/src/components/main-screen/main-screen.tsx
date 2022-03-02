@@ -6,7 +6,8 @@ type MainScreenProps = {
 }
 
 function MainScreen({placeCardsCount}: MainScreenProps): JSX.Element {
-  const placeCards = setKeys(placeCardsCount).map((key) => <PlaceCard key={key.toString()} />);
+  const placeCards = setKeys(placeCardsCount).map((key) => <PlaceCard key={key} />);
+
   return (
     <div className="cities">
       <div className="cities__places-container container">
