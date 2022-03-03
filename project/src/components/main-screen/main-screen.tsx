@@ -1,10 +1,13 @@
 import PlaceCard from '../place-card/place-card';
+import {setKeys} from '../../utils';
 
 type MainScreenProps = {
   placeCardsCount: number;
 }
 
 function MainScreen({placeCardsCount}: MainScreenProps): JSX.Element {
+  const placeCards = setKeys(placeCardsCount).map((key) => <PlaceCard key={key} />);
+
   return (
     <div className="cities">
       <div className="cities__places-container container">
@@ -27,7 +30,7 @@ function MainScreen({placeCardsCount}: MainScreenProps): JSX.Element {
             </ul>
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {new Array(placeCardsCount).fill('').map(PlaceCard)}
+            {placeCards}
           </div>
         </section>
         <div className="cities__right-section">
