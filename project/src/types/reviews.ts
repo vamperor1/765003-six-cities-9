@@ -1,4 +1,4 @@
-export type User = {
+type User = {
   avatarUrl: string
   id: number
   isPro: boolean
@@ -12,5 +12,3 @@ export type Review = {
   rating: number
   user: User
 };
-
-export type Reviews = Review[];

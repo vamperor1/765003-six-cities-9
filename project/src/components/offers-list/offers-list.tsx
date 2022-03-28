@@ -1,12 +1,12 @@
 import PlaceCard from '../place-card/place-card';
-import {Offers} from '../../types/offers';
+import {Offer} from '../../types/offers';
 import {useState} from 'react';
 
 type OffersListProps = {
-  offers: Offers;
+  offers: Offer[];
 }
 
-function OffersList({ offers }: OffersListProps): JSX.Element {
+function OffersList({offers}: OffersListProps): JSX.Element {
   const [, setActiveOffer] = useState<null | number>();
 
   return (

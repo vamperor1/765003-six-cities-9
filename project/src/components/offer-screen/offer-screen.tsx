@@ -1,22 +1,22 @@
 import Header from '../header/header';
 import OfferReviewsForm from '../offer-reviews-form/offer-reviews-form';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
-import { Offers } from '../../types/offers';
-import { useParams } from 'react-router-dom';
+import {Offer} from '../../types/offers';
+import {useParams} from 'react-router-dom';
 
 type OfferScreenProps = {
-  offers: Offers;
+  offers: Offer[];
 }
 
-function OfferScreen({ offers }: OfferScreenProps): JSX.Element {
-  const { id } = useParams<{ id: string }>();
+function OfferScreen({offers}: OfferScreenProps): JSX.Element {
+  const {id} = useParams<{id: string}>();
   const offer = id ? offers.find((it) => it.id === parseInt(id, 10)) : null;
 
   if (!offer) {
     return <NotFoundScreen />;
   }
 
-  // Передача данных в разметку отложена до определения источника данных
+  // TODO: Передача данных в разметку отложена до определения источника данных
   return (
     <div className="page">
       <Header />

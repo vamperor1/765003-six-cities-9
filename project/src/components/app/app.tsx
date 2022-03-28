@@ -6,10 +6,10 @@ import MainScreen from '../main-screen/main-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import OfferScreen from '../offer-screen/offer-screen';
 import PrivateRoute from '../private-route/private-route';
-import {Offers} from '../../types/offers';
+import {Offer} from '../../types/offers';
 
 type AppScreenProps = {
- offers: Offers;
+ offers: Offer[];
 }
 
 function App({offers}: AppScreenProps): JSX.Element {

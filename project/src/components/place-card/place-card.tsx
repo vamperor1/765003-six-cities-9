@@ -2,7 +2,7 @@ import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import {Offer} from '../../types/offers';
 import {setStarRating} from '../../utils';
-import {setOfferRoute} from '../../utils';
+import {getRouteWithId} from '../../utils';
 
 
 type PlaceCardProps = {
@@ -17,15 +17,15 @@ function PlaceCard({offer, setActiveOffer}: PlaceCardProps): JSX.Element {
   return (
     <article className="cities__place-card place-card" onMouseOver={() => setActiveOffer(offer.id)}>
       {
-        isPremium ?
-          <div className="place-card__mark">
-            <span>Premium</span>
-          </div> : ''
+        isPremium &&
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
       }
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="/">
+        <Link to={AppRoute.Root}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -47,7 +47,7 @@ function PlaceCard({offer, setActiveOffer}: PlaceCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={setOfferRoute(id, AppRoute.Room)}>{title}</Link>
+          <Link to={getRouteWithId(id, AppRoute.Room)}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

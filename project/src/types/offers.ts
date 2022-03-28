@@ -1,15 +1,15 @@
-export type Location = {
+type Location = {
   latitude: number,
   longitude: number,
   zoom: number
 };
 
-export type City = {
+type City = {
   name: string,
   location: Location
 };
 
-export type Host = {
+type Host = {
   id: number,
   name: string,
   isPro: boolean,
@@ -34,5 +34,3 @@ export type Offer = {
   location: Location,
   id: number
 };
-
-export type Offers = Offer[];

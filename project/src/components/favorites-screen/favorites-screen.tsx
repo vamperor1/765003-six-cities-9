@@ -2,10 +2,10 @@ import FavoritesList from '../favorites-list/favorites-list';
 import FavoritesScreenEmpty from '../favorites-screen-empty/favorites-screen-empty';
 import Header from '../header/header';
 import Footer from '../footer/footer';
-import { Offers } from '../../types/offers';
+import {Offer} from '../../types/offers';
 
 type FavoritesScreenProps = {
-  offers: Offers;
+  offers: Offer[];
 }
 
 function FavoritesScreen({ offers }: FavoritesScreenProps): JSX.Element {

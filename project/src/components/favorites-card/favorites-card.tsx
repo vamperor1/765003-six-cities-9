@@ -1,5 +1,7 @@
 import {Offer} from '../../types/offers';
 import {setStarRating} from '../../utils';
+import {AppRoute} from '../../const';
+import {Link} from 'react-router-dom';
 
 type FavoritesCardProps = {
   favorite: Offer;
@@ -12,15 +14,15 @@ function FavoritesCard({favorite}: FavoritesCardProps): JSX.Element {
   return (
     <article className="favorites__card place-card">
       {
-        isPremium ?
-          <div className="place-card__mark">
-            <span>Premium</span>
-          </div> : ''
+        isPremium &&
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
       }
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="/">
+        <Link to={AppRoute.Root}>
           <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place" />
-        </a>
+        </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
@@ -42,7 +44,7 @@ function FavoritesCard({favorite}: FavoritesCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/">{title}</a>
+          <Link to={AppRoute.Root}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

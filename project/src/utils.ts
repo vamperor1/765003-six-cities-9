@@ -8,6 +8,6 @@ export function setStarRating(rating: number): string {
   return `${Math.round(rating) * 100 / MAX_RATING}%`;
 }
 
-export function setOfferRoute(offerId: number, route: string): string {
+export function getRouteWithId(offerId: number, route: string): string {
   return route.replace(':id', offerId.toString());
 }

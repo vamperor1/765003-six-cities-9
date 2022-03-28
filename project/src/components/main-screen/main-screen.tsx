@@ -1,12 +1,12 @@
 import CitiesTabs from '../cities-tabs/cities-tabs';
 import Header from '../header/header';
 import OffersList from '../offers-list/offers-list';
-import {Offers} from '../../types/offers';
+import {Offer} from '../../types/offers';
 import MainScreenEmpty from '../main-screen-empty/main-screen-empty';
 
 
 type MainScreenProps = {
-  offers: Offers;
+  offers: Offer[];
 }
 
 function MainScreen({offers}: MainScreenProps): JSX.Element {
