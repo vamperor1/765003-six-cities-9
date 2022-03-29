@@ -15,7 +15,7 @@ function Header(): JSX.Element {
             </Link>
           </div>
           {
-            location.pathname === AppRoute.SignIn ||
+            location.pathname !== AppRoute.SignIn &&
               <HeaderNav />
           }
         </div>
