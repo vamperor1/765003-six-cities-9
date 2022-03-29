@@ -1,42 +1,32 @@
-import PlaceCard from '../place-card/place-card';
-import {setKeys} from '../../utils';
+import CitiesTabs from '../cities-tabs/cities-tabs';
+import Header from '../header/header';
+import OffersList from '../offers-list/offers-list';
+import {Offer} from '../../types/offers';
+import MainScreenEmpty from '../main-screen-empty/main-screen-empty';
+
 
 type MainScreenProps = {
-  placeCardsCount: number;
+  offers: Offer[];
 }
 
-function MainScreen({placeCardsCount}: MainScreenProps): JSX.Element {
-  const placeCards = setKeys(placeCardsCount).map((key) => <PlaceCard key={key} />);
-
+function MainScreen({offers}: MainScreenProps): JSX.Element {
   return (
-    <div className="cities">
-      <div className="cities__places-container container">
-        <section className="cities__places places">
-          <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">312 places to stay in Amsterdam</b>
-          <form className="places__sorting" action="#" method="get">
-            <span className="places__sorting-caption">Sort by</span>
-            <span className="places__sorting-type" tabIndex={0}>
-              Popular
-              <svg className="places__sorting-arrow" width="7" height="4">
-                <use xlinkHref="#icon-arrow-select"></use>
-              </svg>
-            </span>
-            <ul className="places__options places__options--custom places__options--opened">
-              <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-              <li className="places__option" tabIndex={0}>Price: low to high</li>
-              <li className="places__option" tabIndex={0}>Price: high to low</li>
-              <li className="places__option" tabIndex={0}>Top rated first</li>
-            </ul>
-          </form>
-          <div className="cities__places-list places__list tabs__content">
-            {placeCards}
+    <div className="page page--gray page--main">
+      <Header />
+      <main className={offers ? 'page__main page__main--index'
+        : 'page__main page__main--index page__main--index-empty'}
+      >
+        <h1 className="visually-hidden">Cities</h1>
+        <CitiesTabs />
+        <div className="cities">
+          <div className={offers ? 'cities__places-container container'
+            : 'cities__places-container cities__places-container--empty container'}
+          >
+            {offers ? <OffersList offers={offers} />
+              : <MainScreenEmpty />}
           </div>
-        </section>
-        <div className="cities__right-section">
-          <section className="cities__map map"></section>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
