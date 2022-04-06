@@ -1,3 +1,4 @@
+import Map from '../map/map';
 import PlaceCard from '../place-card/place-card';
 import {Offer} from '../../types/offers';
 import {useState} from 'react';
@@ -7,7 +8,7 @@ type OffersListProps = {
 }
 
 function OffersList({offers}: OffersListProps): JSX.Element {
-  const [, setActiveOffer] = useState<null | number>();
+  const [activeId, setActiveOfferId] = useState<null | number>(null);
 
   return (
     <>
@@ -30,11 +31,13 @@ function OffersList({offers}: OffersListProps): JSX.Element {
           </ul>
         </form>
         <div className="cities__places-list places__list tabs__content">
-          {offers.map((offer) => <PlaceCard offer={offer} key={offer.id} setActiveOffer={setActiveOffer} />)}
+          {offers.map((offer) => <PlaceCard offer={offer} key={offer.id} setActiveOfferId={setActiveOfferId} />)}
         </div>
       </section>
       <div className="cities__right-section">
-        <section className="cities__map map"></section>
+        <section className="cities__map map">
+          <Map offers={offers} activeId={activeId}/>
+        </section>
       </div>
     </>
   );

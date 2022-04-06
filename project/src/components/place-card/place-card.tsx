@@ -7,15 +7,15 @@ import {getRouteWithId} from '../../utils';
 
 type PlaceCardProps = {
   offer: Offer;
-  setActiveOffer: (activeId: null | number) => void;
+  setActiveOfferId: (activeId: null | number) => void;
 }
 
-function PlaceCard({offer, setActiveOffer}: PlaceCardProps): JSX.Element {
+function PlaceCard({offer, setActiveOfferId}: PlaceCardProps): JSX.Element {
   const {previewImage, isPremium, price, title, type, rating, id} = offer;
   const starRating = setStarRating(rating);
 
   return (
-    <article className="cities__place-card place-card" onMouseOver={() => setActiveOffer(offer.id)}>
+    <article className="cities__place-card place-card" onMouseEnter={() => setActiveOfferId(offer.id)} onMouseLeave={() => setActiveOfferId(null)}>
       {
         isPremium &&
         <div className="place-card__mark">
