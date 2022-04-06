@@ -33,3 +33,8 @@ export const REVIEWS_RATING = [
     title: 'terribly',
   },
 ];
+
+export enum UrlMarkers {
+  Default = 'img/pin.svg',
+  Current = 'img/pin-active.svg'
+}
