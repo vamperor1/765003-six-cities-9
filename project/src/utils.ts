@@ -1,7 +1,15 @@
 const MAX_RATING = 5;
 
-export function setKeys(keysCount: number): number[] {
-  return new Array(keysCount).fill(0).map((it, i) => it = i + 1);
+type Keys = {
+  item: string;
+  key: number;
+}
+
+export function setKeys(arr: string[]): Keys[] {
+  return arr.map((it, i) => ({
+    item: it,
+    key: i + 1,
+  }));
 }
 
 export function setStarRating(rating: number): string {

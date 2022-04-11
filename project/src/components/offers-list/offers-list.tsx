@@ -1,7 +1,11 @@
 import Map from '../map/map';
 import PlaceCard from '../place-card/place-card';
+import OffersListRoot from '../offers-list-root/offers-list-root';
+import OffersListOffer from '../offers-list-offer/offers-list-offer';
 import {Offer} from '../../types/offers';
 import {useState} from 'react';
+import {useLocation} from 'react-router-dom';
+import {AppRoute} from '../../const';
 
 type OffersListProps = {
   offers: Offer[];
@@ -9,29 +13,24 @@ type OffersListProps = {
 
 function OffersList({offers}: OffersListProps): JSX.Element {
   const [activeId, setActiveOfferId] = useState<null | number>(null);
+  const location = useLocation().pathname;
+  const isRoot = location === AppRoute.Root;
 
   return (
     <>
-      <section className="cities__places places">
-        <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">312 places to stay in Amsterdam</b>
-        <form className="places__sorting" action="#" method="get">
-          <span className="places__sorting-caption">Sort by</span>
-          <span className="places__sorting-type" tabIndex={0}>
-            Popular
-            <svg className="places__sorting-arrow" width="7" height="4">
-              <use xlinkHref="#icon-arrow-select"></use>
-            </svg>
-          </span>
-          <ul className="places__options places__options--custom places__options--opened">
-            <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-            <li className="places__option" tabIndex={0}>Price: low to high</li>
-            <li className="places__option" tabIndex={0}>Price: high to low</li>
-            <li className="places__option" tabIndex={0}>Top rated first</li>
-          </ul>
-        </form>
-        <div className="cities__places-list places__list tabs__content">
-          {offers.map((offer) => <PlaceCard offer={offer} key={offer.id} setActiveOfferId={setActiveOfferId} />)}
+      <section className={`${isRoot ? 'cities__places' : 'near-places'} places}`}>
+        {
+          isRoot
+            ? <OffersListRoot />
+            : <OffersListOffer />
+        }
+        <div className=
+          {
+            `${isRoot ? 'cities__places-list tabs__content' : 'near-places__list'}
+            places__list`
+          }
+        >
+          {offers.map((offer) => <PlaceCard isRoot={isRoot} offer={offer} key={offer.id} setActiveOfferId={setActiveOfferId} />)}
         </div>
       </section>
       <div className="cities__right-section">

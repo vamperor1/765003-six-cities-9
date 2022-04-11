@@ -34,6 +34,14 @@ export const REVIEWS_RATING = [
   },
 ];
 
+export const OFFER_FEATURES = [
+  {
+    entire: 'entire',
+    key: 1,
+  },
+  'entire', 'bedrooms', 'adults',
+];
+
 export enum UrlMarkers {
   Default = 'img/pin.svg',
   Current = 'img/pin-active.svg'
