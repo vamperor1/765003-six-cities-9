@@ -10,6 +10,7 @@ import {Offer} from '../../types/offers';
 import {reviews} from '../../mocks/reviews';
 import {useParams} from 'react-router-dom';
 import {setStarRating} from '../../utils';
+import {Placement} from '../../const';
 
 type OfferScreenProps = {
   offers: Offer[];
@@ -127,7 +128,7 @@ function OfferScreen({offers}: OfferScreenProps): JSX.Element {
           </section>
         </section>
         <div className="container">
-          <OffersList offers={nearOffers} />
+          <OffersList placement={Placement.Near} offers={nearOffers} />
         </div>
       </main>
     </div>

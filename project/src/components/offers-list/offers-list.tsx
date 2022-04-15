@@ -1,44 +1,24 @@
-import Map from '../map/map';
 import PlaceCard from '../place-card/place-card';
-import OffersListRoot from '../offers-list-root/offers-list-root';
-import OffersListOffer from '../offers-list-offer/offers-list-offer';
 import {Offer} from '../../types/offers';
-import {useState} from 'react';
-import {useLocation} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import {OffersListClasses} from '../../const';
+import {Placement} from '../../const';
 
 type OffersListProps = {
   offers: Offer[];
+  placement: Placement;
+  setActiveOfferId?: (activeId: null | number) => void;
 }
 
-function OffersList({offers}: OffersListProps): JSX.Element {
-  const [activeId, setActiveOfferId] = useState<null | number>(null);
-  const location = useLocation().pathname;
-  const isRoot = location === AppRoute.Root;
+function OffersList({offers, placement, setActiveOfferId}: OffersListProps): JSX.Element {
 
   return (
-    <>
-      <section className={`${isRoot ? 'cities__places' : 'near-places'} places}`}>
-        {
-          isRoot
-            ? <OffersListRoot />
-            : <OffersListOffer />
-        }
-        <div className=
-          {
-            `${isRoot ? 'cities__places-list tabs__content' : 'near-places__list'}
-            places__list`
-          }
-        >
-          {offers.map((offer) => <PlaceCard isRoot={isRoot} offer={offer} key={offer.id} setActiveOfferId={setActiveOfferId} />)}
-        </div>
-      </section>
-      <div className="cities__right-section">
-        <section className="cities__map map">
-          <Map offers={offers} activeId={activeId}/>
-        </section>
-      </div>
-    </>
+    <div className=
+      {
+        `${OffersListClasses.listClass[placement]}`
+      }
+    >
+      {offers.map((offer) => <PlaceCard placement={placement} offer={offer} key={offer.id} setActiveOfferId={setActiveOfferId} />)}
+    </div>
   );
 }
 

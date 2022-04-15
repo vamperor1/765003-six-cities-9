@@ -1,3 +1,7 @@
+import {Classes} from './types/classes';
+
+export const MAX_RATING = 5;
+
 export enum AppRoute {
   Root = '/',
   SignIn = '/login',
@@ -46,3 +50,23 @@ export enum UrlMarkers {
   Default = 'img/pin.svg',
   Current = 'img/pin-active.svg'
 }
+
+export enum Placement {
+  City = 'citiesPlaces',
+  Near = 'nearPlaces'
+}
+
+export const OffersListClasses: Classes = {
+  listClass: {
+    [Placement.City]: 'cities__places-list tabs__content',
+    [Placement.Near]: 'near-places__list',
+  },
+  placeCard: {
+    [Placement.City]: 'cities__place-card',
+    [Placement.Near]: 'near-places__card',
+  },
+  imageWrapper: {
+    [Placement.City]: 'cities__image-wrapper',
+    [Placement.Near]: 'near-places__image-wrapper',
+  },
+};

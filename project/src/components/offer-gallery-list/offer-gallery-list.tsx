@@ -1,4 +1,3 @@
-import OfferGalleryItem from '../offer-gallery-item/offer-gallery-item';
 import {setKeys} from '../../utils';
 
 type OfferGalleryListProps = {
@@ -11,7 +10,14 @@ function OfferGalleryList({images}: OfferGalleryListProps): JSX.Element {
   return (
     <div className="property__gallery-container container">
       <div className="property__gallery">
-        {imagesWithKeys.map((image) => <OfferGalleryItem image={image.item} key={image.key} />)}
+        {
+          images.length > 0 &&
+          imagesWithKeys.map((image) => (
+            <div className="property__image-wrapper" key={image.key}>
+              <img className="property__image" src={image.item} alt="Offer gallery" />
+            </div>
+          ))
+        }
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-const MAX_RATING = 5;
+import {MAX_RATING} from './const';
 
 type Keys = {
   item: string;

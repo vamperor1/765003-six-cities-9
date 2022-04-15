@@ -1,4 +1,3 @@
-import OfferInsideItem from '../offer-inside-item/offer-inside-item';
 import {setKeys} from '../../utils';
 
 type OfferInsideListProps = {
@@ -10,7 +9,13 @@ function OfferInsideList({goods}: OfferInsideListProps): JSX.Element {
 
   return (
     <ul className="property__inside-list">
-      {goodsWithKeys.map((it) => <OfferInsideItem item={it.item} key={it.key}/>)}
+      {
+        goodsWithKeys.map((good) => (
+          <li className="property__inside-item" key={good.key}>
+            {good.item}
+          </li>
+        ))
+      }
     </ul>
   );
 }

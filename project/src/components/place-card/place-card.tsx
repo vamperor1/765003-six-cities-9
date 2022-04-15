@@ -3,22 +3,24 @@ import {Link} from 'react-router-dom';
 import {Offer} from '../../types/offers';
 import {setStarRating} from '../../utils';
 import {getRouteWithId} from '../../utils';
+import {OffersListClasses} from '../../const';
+import {Placement} from '../../const';
 
 
 type PlaceCardProps = {
   offer: Offer;
-  isRoot: boolean;
-  setActiveOfferId: (activeId: null | number) => void;
+  placement: Placement;
+  setActiveOfferId?: (activeId: null | number) => void;
 }
 
-function PlaceCard({offer, setActiveOfferId, isRoot}: PlaceCardProps): JSX.Element {
+function PlaceCard({placement, offer, setActiveOfferId}: PlaceCardProps): JSX.Element {
   const {previewImage, isPremium, price, title, type, rating, id} = offer;
   const starRating = setStarRating(rating);
 
   return (
-    <article className={`${isRoot ? 'cities__place-card' : 'near-places__card'} place-card`}
-      onMouseEnter={() => isRoot ? setActiveOfferId(offer.id) : null}
-      onMouseLeave={() => isRoot ? setActiveOfferId(null) : null}
+    <article className={`${OffersListClasses.placeCard[placement]} place-card`}
+      onMouseEnter={() => setActiveOfferId?.(offer.id)}
+      onMouseLeave={() => setActiveOfferId?.(null)}
     >
       {
         isPremium &&
@@ -26,7 +28,7 @@ function PlaceCard({offer, setActiveOfferId, isRoot}: PlaceCardProps): JSX.Eleme
           <span>Premium</span>
         </div>
       }
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${OffersListClasses.imageWrapper[placement]} place-card__image-wrapper`}>
         <Link to={AppRoute.Root}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
         </Link>
