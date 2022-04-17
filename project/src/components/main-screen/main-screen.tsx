@@ -1,6 +1,6 @@
 import CitiesTabs from '../cities-tabs/cities-tabs';
 import Header from '../header/header';
-import OffersList from '../offers-list/offers-list';
+import CitiesPlaces from '../cities-places/cities-places';
 import {Offer} from '../../types/offers';
 import MainScreenEmpty from '../main-screen-empty/main-screen-empty';
 
@@ -22,8 +22,11 @@ function MainScreen({offers}: MainScreenProps): JSX.Element {
           <div className={offers ? 'cities__places-container container'
             : 'cities__places-container cities__places-container--empty container'}
           >
-            {offers ? <OffersList offers={offers} />
-              : <MainScreenEmpty />}
+            {
+              offers
+                ? <CitiesPlaces offers={offers} />
+                : <MainScreenEmpty />
+            }
           </div>
         </div>
       </main>

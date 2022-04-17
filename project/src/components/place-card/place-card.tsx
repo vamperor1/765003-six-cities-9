@@ -1,33 +1,43 @@
 import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import {Offer} from '../../types/offers';
-import {setStarRating} from '../../utils';
+import {getPercentRating} from '../../utils';
 import {getRouteWithId} from '../../utils';
+import {PlaceCardClasses} from '../../const';
+import {Placement} from '../../const';
 
 
 type PlaceCardProps = {
   offer: Offer;
-  setActiveOfferId: (activeId: null | number) => void;
+  placement: Placement;
+  setActiveOfferId?: (activeId: null | number) => void;
 }
 
-function PlaceCard({offer, setActiveOfferId}: PlaceCardProps): JSX.Element {
+function PlaceCard({placement, offer, setActiveOfferId}: PlaceCardProps): JSX.Element {
   const {previewImage, isPremium, price, title, type, rating, id} = offer;
-  const starRating = setStarRating(rating);
+  const starRating = getPercentRating(rating);
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={() => setActiveOfferId(offer.id)} onMouseLeave={() => setActiveOfferId(null)}>
+    <article className={`${PlaceCardClasses.placeCard[placement]} place-card`}
+      onMouseEnter={() => setActiveOfferId?.(offer.id)}
+      onMouseLeave={() => setActiveOfferId?.(null)}
+    >
       {
         isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       }
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={AppRoute.Root}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
+      <div className={`${PlaceCardClasses.imageWrapper[placement]} place-card__image-wrapper`}>
+        <Link to={getRouteWithId(id, AppRoute.Room)}>
+          <img
+            className="place-card__image" src={previewImage}
+            width={PlaceCardClasses.imgWidth[placement]}
+            height={PlaceCardClasses.imgHeight[placement]} alt="Place"
+          />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={`${PlaceCardClasses.placeCardInfo[placement]} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>

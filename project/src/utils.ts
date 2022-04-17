@@ -1,10 +1,6 @@
-const MAX_RATING = 5;
+import {MAX_RATING} from './const';
 
-export function setKeys(keysCount: number): number[] {
-  return new Array(keysCount).fill(0).map((it, i) => it = i + 1);
-}
-
-export function setStarRating(rating: number): string {
+export function getPercentRating(rating: number): string {
   return `${Math.round(rating) * 100 / MAX_RATING}%`;
 }
 

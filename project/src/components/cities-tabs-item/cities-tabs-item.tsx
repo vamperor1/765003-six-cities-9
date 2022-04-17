@@ -6,7 +6,6 @@ type CitiesTabsItemProps = {
 }
 
 function CitiesTabsItem({cityName}: CitiesTabsItemProps): JSX.Element {
-  // Пока без активного таба и фильтрации
   return (
     <li className="locations__item">
       <Link to={AppRoute.Root} className="locations__item-link tabs__item">
