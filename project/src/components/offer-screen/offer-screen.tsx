@@ -9,7 +9,7 @@ import Map from '../map/map';
 import {Offer} from '../../types/offers';
 import {reviews} from '../../mocks/reviews';
 import {useParams} from 'react-router-dom';
-import {setStarRating} from '../../utils';
+import {getPercentRating} from '../../utils';
 import {Placement} from '../../const';
 
 type OfferScreenProps = {
@@ -32,7 +32,7 @@ function OfferScreen({offers}: OfferScreenProps): JSX.Element {
   const shownType = type.slice(0, 1).toUpperCase() + type.slice(1);
   const shownImages = images.length > 6 ? images.slice(0, 6) : images;
   const nearOffers = offers.slice(0, 3);
-  const starRating = setStarRating(rating);
+  const starRating = getPercentRating(rating);
 
   return (
     <div className="page">

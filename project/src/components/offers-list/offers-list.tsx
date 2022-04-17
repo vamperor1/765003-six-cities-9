@@ -1,6 +1,6 @@
 import PlaceCard from '../place-card/place-card';
 import {Offer} from '../../types/offers';
-import {OffersListClasses} from '../../const';
+import {PlaceCardClasses} from '../../const';
 import {Placement} from '../../const';
 
 type OffersListProps = {
@@ -10,13 +10,8 @@ type OffersListProps = {
 }
 
 function OffersList({offers, placement, setActiveOfferId}: OffersListProps): JSX.Element {
-
   return (
-    <div className=
-      {
-        `${OffersListClasses.listClass[placement]}`
-      }
-    >
+    <div className={`${PlaceCardClasses.listClass[placement]}`}>
       {offers.map((offer) => <PlaceCard placement={placement} offer={offer} key={offer.id} setActiveOfferId={setActiveOfferId} />)}
     </div>
   );

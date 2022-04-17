@@ -1,5 +1,5 @@
 import {Review} from '../../types/reviews';
-import {setStarRating} from '../../utils';
+import {getPercentRating} from '../../utils';
 
 type OfferReviewsItemProps = {
   review: Review;
@@ -11,7 +11,7 @@ function OfferReviewsItem({review}: OfferReviewsItemProps): JSX.Element {
   const dateData = new Date(date);
   const reviewMonth = dateData.toLocaleString('en-US', {month: 'long'});
   const reviewYear = dateData.getFullYear();
-  const starRating = setStarRating(rating);
+  const starRating = getPercentRating(rating);
 
   return (
     <li className="reviews__item">
