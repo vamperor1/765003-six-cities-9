@@ -22,7 +22,11 @@ function FavoritesItem({ favorites, cityName }: FavoritesItemProps): JSX.Element
       <div className="favorites__places">
         {
           favorites.map((favorite) => favorite.city.name === cityName &&
-            <PlaceCard placement={Placement.Favorites} offer={favorite} key={favorite.id} />)
+            <PlaceCard
+              placement={Placement.Favorites}
+              offer={favorite}
+              key={favorite.id}
+            />)
         }
       </div>
     </li>

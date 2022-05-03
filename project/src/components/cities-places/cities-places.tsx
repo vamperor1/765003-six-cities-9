@@ -1,8 +1,8 @@
 import Map from '../map/map';
-import {Offer} from '../../types/offers';
-import {useState} from 'react';
 import OffersList from '../offers-list/offers-list';
+import {Offer} from '../../types/offers';
 import {Placement} from '../../const';
+import {useState} from 'react';
 
 type CitiesPlacesProps = {
   offers: Offer[];
@@ -15,7 +15,10 @@ function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element {
     <>
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">312 places to stay in Amsterdam</b>
+        <b className="places__found">
+          {`${offers.length} ${offers.length > 1 ? 'places' : 'place'}
+           to stay in ${offers[0].city.name}`}
+        </b>
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by</span>
           <span className="places__sorting-type" tabIndex={0}>

@@ -11,8 +11,16 @@ type OffersListProps = {
 
 function OffersList({offers, placement, setActiveOfferId}: OffersListProps): JSX.Element {
   return (
-    <div className={`${PlaceCardClasses.listClass[placement]}`}>
-      {offers.map((offer) => <PlaceCard placement={placement} offer={offer} key={offer.id} setActiveOfferId={setActiveOfferId} />)}
+    <div className={PlaceCardClasses.listClass[placement]}>
+      {
+        offers.map((offer) => (
+          <PlaceCard
+            placement={placement}
+            offer={offer}
+            key={offer.id}
+            setActiveOfferId={setActiveOfferId}
+          />))
+      }
     </div>
   );
 }

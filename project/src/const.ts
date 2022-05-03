@@ -2,6 +2,8 @@ import {Classes} from './types/classes';
 
 export const MAX_RATING = 5;
 
+export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+
 export enum AppRoute {
   Root = '/',
   SignIn = '/login',
@@ -36,14 +38,6 @@ export const REVIEWS_RATING = [
     star: '1',
     title: 'terribly',
   },
-];
-
-export const OFFER_FEATURES = [
-  {
-    entire: 'entire',
-    key: 1,
-  },
-  'entire', 'bedrooms', 'adults',
 ];
 
 export enum UrlMarkers {

@@ -1,9 +1,9 @@
-import {Offer} from '../types/offers';
+import { Offer } from '../types/offers';
 
 export const offers: Offer[] = [
   {
     'city': {
-      'name': 'Brussels',
+      'name': 'Amsterdam',
       'location': {
         'latitude': 52.37454,
         'longitude': 4.897976,
@@ -165,7 +165,7 @@ export const offers: Offer[] = [
   },
   {
     'city': {
-      'name': 'Cologne',
+      'name': 'Amsterdam',
       'location': {
         'latitude': 52.37454,
         'longitude': 4.897976,
@@ -215,5 +215,119 @@ export const offers: Offer[] = [
       'zoom': 16,
     },
     'id': 4,
+  },
+  {
+    'city': {
+      'name': 'Dusseldorf',
+      'location': {
+        'latitude': 51.225402,
+        'longitude': 6.776314,
+        'zoom': 13,
+      },
+    },
+    'previewImage': 'https://9.react.pages.academy/static/hotel/4.jpg',
+    'images': [
+      'https://9.react.pages.academy/static/hotel/6.jpg',
+      'https://9.react.pages.academy/static/hotel/13.jpg',
+      'https://9.react.pages.academy/static/hotel/16.jpg',
+      'https://9.react.pages.academy/static/hotel/18.jpg',
+      'https://9.react.pages.academy/static/hotel/17.jpg',
+      'https://9.react.pages.academy/static/hotel/8.jpg',
+      'https://9.react.pages.academy/static/hotel/10.jpg',
+      'https://9.react.pages.academy/static/hotel/9.jpg',
+      'https://9.react.pages.academy/static/hotel/19.jpg',
+      'https://9.react.pages.academy/static/hotel/5.jpg',
+      'https://9.react.pages.academy/static/hotel/14.jpg',
+      'https://9.react.pages.academy/static/hotel/20.jpg',
+      'https://9.react.pages.academy/static/hotel/11.jpg',
+      'https://9.react.pages.academy/static/hotel/2.jpg',
+    ],
+    'title': 'Canal View Prinsengracht',
+    'isFavorite': false,
+    'isPremium': false,
+    'rating': 4.6,
+    'type': 'house',
+    'bedrooms': 4,
+    'maxAdults': 5,
+    'price': 463,
+    'goods': [
+      'Dishwasher',
+      'Baby seat',
+      'Laptop friendly workspace',
+      'Air conditioning',
+      'Fridge',
+      'Washer',
+      'Towels',
+      'Breakfast',
+    ],
+    'host': {
+      'id': 25,
+      'name': 'Angelina',
+      'isPro': true,
+      'avatarUrl': 'img/avatar-angelina.jpg',
+    },
+    'description': 'Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.',
+    'location': {
+      'latitude': 51.236402000000005,
+      'longitude': 6.784314,
+      'zoom': 16,
+    },
+    'id': 1,
+  },
+  {
+    'city': {
+      'name': 'Dusseldorf',
+      'location': {
+        'latitude': 51.225402,
+        'longitude': 6.776314,
+        'zoom': 13,
+      },
+    },
+    'previewImage': 'https://9.react.pages.academy/static/hotel/5.jpg',
+    'images': [
+      'https://9.react.pages.academy/static/hotel/5.jpg',
+      'https://9.react.pages.academy/static/hotel/16.jpg',
+      'https://9.react.pages.academy/static/hotel/11.jpg',
+      'https://9.react.pages.academy/static/hotel/19.jpg',
+      'https://9.react.pages.academy/static/hotel/7.jpg',
+      'https://9.react.pages.academy/static/hotel/2.jpg',
+      'https://9.react.pages.academy/static/hotel/18.jpg',
+      'https://9.react.pages.academy/static/hotel/12.jpg',
+      'https://9.react.pages.academy/static/hotel/1.jpg',
+      'https://9.react.pages.academy/static/hotel/20.jpg',
+      'https://9.react.pages.academy/static/hotel/10.jpg',
+      'https://9.react.pages.academy/static/hotel/8.jpg',
+      'https://9.react.pages.academy/static/hotel/17.jpg',
+      'https://9.react.pages.academy/static/hotel/13.jpg',
+    ],
+    'title': 'Wood and stone place',
+    'isFavorite': false,
+    'isPremium': false,
+    'rating': 4.7,
+    'type': 'hotel',
+    'bedrooms': 4,
+    'maxAdults': 7,
+    'price': 454,
+    'goods': [
+      'Laptop friendly workspace',
+      'Breakfast',
+      'Air conditioning',
+      'Baby seat',
+      'Towels',
+      'Washer',
+    ],
+    'host': {
+      'id': 25,
+      'name': 'Angelina',
+      'isPro': true,
+      'avatarUrl': 'img/avatar-angelina.jpg',
+    },
+    'description': 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.',
+    'location': {
+      'latitude': 51.239402000000005,
+      'longitude': 6.756314000000001,
+      'zoom': 16,
+    },
+    'id': 3,
   },
 ];

@@ -3,6 +3,8 @@ import Header from '../header/header';
 import CitiesPlaces from '../cities-places/cities-places';
 import {Offer} from '../../types/offers';
 import MainScreenEmpty from '../main-screen-empty/main-screen-empty';
+import {useAppSelector} from '../../hooks/';
+// import {getOffers} from '../../store/action';
 
 
 type MainScreenProps = {
@@ -10,21 +12,25 @@ type MainScreenProps = {
 }
 
 function MainScreen({offers}: MainScreenProps): JSX.Element {
+  const offersByCity = useAppSelector((state) => state.offers);
+  const isEmpty = offersByCity.length > 0;
+
   return (
     <div className="page page--gray page--main">
       <Header />
-      <main className={offers ? 'page__main page__main--index'
+      <main className={isEmpty ? 'page__main page__main--index'
         : 'page__main page__main--index page__main--index-empty'}
       >
         <h1 className="visually-hidden">Cities</h1>
-        <CitiesTabs />
+        <CitiesTabs offers={offers}/>
         <div className="cities">
-          <div className={offers ? 'cities__places-container container'
+          <div className={isEmpty
+            ? 'cities__places-container container'
             : 'cities__places-container cities__places-container--empty container'}
           >
             {
-              offers
-                ? <CitiesPlaces offers={offers} />
+              isEmpty
+                ? <CitiesPlaces offers={offersByCity} />
                 : <MainScreenEmpty />
             }
           </div>
