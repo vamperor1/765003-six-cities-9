@@ -4,8 +4,6 @@ import CitiesPlaces from '../cities-places/cities-places';
 import {Offer} from '../../types/offers';
 import MainScreenEmpty from '../main-screen-empty/main-screen-empty';
 import {useAppSelector} from '../../hooks/';
-// import {getOffers} from '../../store/action';
-
 
 type MainScreenProps = {
   offers: Offer[];

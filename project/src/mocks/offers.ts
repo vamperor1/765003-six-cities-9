@@ -272,7 +272,7 @@ export const offers: Offer[] = [
       'longitude': 6.784314,
       'zoom': 16,
     },
-    'id': 1,
+    'id': 5,
   },
   {
     'city': {
@@ -328,6 +328,6 @@ export const offers: Offer[] = [
       'longitude': 6.756314000000001,
       'zoom': 16,
     },
-    'id': 3,
+    'id': 6,
   },
 ];

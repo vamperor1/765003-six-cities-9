@@ -11,7 +11,7 @@ export const reviews: Review[] = [
     },
     'rating': 1,
     'comment': 'I stayed here for one night and it was an unpleasant experience.',
-    'date': '2022-02-15T21:48:13.665Z',
+    'date': '2022-01-15T21:48:13.665Z',
   },
   {
     'id': 2,
@@ -35,7 +35,7 @@ export const reviews: Review[] = [
     },
     'rating': 4,
     'comment': 'I stayed here for one night and it was an unpleasant experience.',
-    'date': '2022-02-15T21:48:13.665Z',
+    'date': '2022-03-15T21:48:13.665Z',
   },
   {
     'id': 4,

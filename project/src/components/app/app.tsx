@@ -7,18 +7,12 @@ import NotFoundScreen from '../not-found-screen/not-found-screen';
 import OfferScreen from '../offer-screen/offer-screen';
 import PrivateRoute from '../private-route/private-route';
 import {Offer} from '../../types/offers';
-// import {useAppDispatch} from '../../hooks/';
-// import {getOffers} from '../../store/action';
-// import {AppDispatch} from '../../types/state';
 
 type AppScreenProps = {
  offers: Offer[];
 }
 
 function App({offers}: AppScreenProps): JSX.Element {
-  // const dispatch = useAppDispatch();
-  // dispatch(getOffers(offers));
-
   return (
     <BrowserRouter>
       <Routes>
@@ -40,7 +34,7 @@ function App({offers}: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Room}
-          element={<OfferScreen offers={offers} />}
+          element={<OfferScreen offers={offers}/>}
         />
         <Route
           path="*"
