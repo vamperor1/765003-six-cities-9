@@ -3,7 +3,8 @@ import {Offer} from './offers.js';
 
 export type InitialState = {
   city: string,
-  offers: [] | Offer[]
+  offers: [] | Offer[],
+  sortType: string
 }
 
 export type State = ReturnType<typeof store.getState>;

@@ -4,6 +4,8 @@ export const MAX_RATING = 5;
 
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
+export const SORT_OPTIONS = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
+
 export enum AppRoute {
   Root = '/',
   SignIn = '/login',

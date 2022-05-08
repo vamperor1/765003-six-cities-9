@@ -192,7 +192,7 @@ export const offers: Offer[] = [
     'title': 'The Joshua Tree House',
     'isFavorite': false,
     'isPremium': true,
-    'rating': 4.3,
+    'rating': 4.9,
     'type': 'room',
     'bedrooms': 1,
     'maxAdults': 3,
