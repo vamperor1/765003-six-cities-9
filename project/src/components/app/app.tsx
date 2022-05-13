@@ -18,7 +18,7 @@ function App({offers}: AppScreenProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainScreen offers={offers} />}
+          element={<MainScreen offers={offers}/>}
         />
         <Route
           path={AppRoute.SignIn}
@@ -34,7 +34,7 @@ function App({offers}: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Room}
-          element={<OfferScreen offers={offers} />}
+          element={<OfferScreen offers={offers}/>}
         />
         <Route
           path="*"
