@@ -1,4 +1,4 @@
-import {SORT_OPTIONS} from '../../const';
+import {SortOptions} from '../../const';
 import {useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks/';
 import {changeSorting} from '../../store/action';
@@ -24,7 +24,7 @@ function SortMenu(): JSX.Element {
         ${isMenuOpened ? 'places__options--opened' : ''}`}
       >
         {
-          SORT_OPTIONS.map((option) => (
+          Object.values(SortOptions).map((option) => (
             <li className="places__option" key={option} tabIndex={0}
               onClick={() => {
                 dispatch(changeSorting(option));

@@ -13,7 +13,7 @@ function CitiesTabsItem({offers, cityName}: CitiesTabsItemProps): JSX.Element {
   const currentCity = useAppSelector((state) => state.city);
   const isActive = cityName === currentCity;
 
-  const handleCityChange = (evt: {preventDefault: () => void}) => {
+  const handleCityChange = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
     dispatch(changeCity(cityName));
     dispatch(getOffers({city: cityName, offers}));

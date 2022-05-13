@@ -17,8 +17,7 @@ function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element {
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">
-          {`${offers.length} ${offers.length > 1 ? 'places' : 'place'}
-           to stay in ${offers[0].city.name}`}
+          {offers.length} {offers.length > 1 ? 'places' : 'place'} to stay in {offers[0].city.name}
         </b>
         <SortMenu />
         <OffersList offers={offers} placement={Placement.City} setActiveOfferId={setActiveOfferId} />

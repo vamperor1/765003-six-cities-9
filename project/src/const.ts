@@ -2,9 +2,18 @@ import {Classes} from './types/classes';
 
 export const MAX_RATING = 5;
 
+export const MAX_REVIEWS_COUNT = 10;
+
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-export const SORT_OPTIONS = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
+// export const SORT_OPTIONS = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
+
+export const SortOptions = {
+  POPULAR: 'Popular',
+  LOW_PRICE_FIRST: 'Price: low to high',
+  HIGH_PRICE_FIRST: 'Price: high to low',
+  TOP_RATED_FIRST: 'Top rated first',
+} as const;
 
 export enum AppRoute {
   Root = '/',

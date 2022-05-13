@@ -1,9 +1,9 @@
 import {store} from '../store/index.js';
 import {Offer} from './offers.js';
 
-export type InitialState = {
+export type OffersState = {
   city: string,
-  offers: [] | Offer[],
+  offers: Offer[],
   sortType: string
 }
 

@@ -3,7 +3,7 @@ import {Offer} from '../../types/offers';
 import {PlaceCardClasses} from '../../const';
 import {Placement} from '../../const';
 import {useAppSelector} from '../../hooks/';
-import {SORT_OPTIONS} from '../../const';
+import {SortOptions} from '../../const';
 
 type OffersListProps = {
   offers: Offer[];
@@ -20,13 +20,13 @@ function OffersList({offers, placement, setActiveOfferId}: OffersListProps): JSX
   // в более наглядный enum, например.
   // Или это допустимая практика с индексом массива в качестве переменной?
   switch(sortType) {
-    case SORT_OPTIONS[1]:
+    case SortOptions.LOW_PRICE_FIRST:
       sortedOffers.sort((a, b) => a.price > b.price ? 1 : -1);
       break;
-    case SORT_OPTIONS[2]:
+    case SortOptions.HIGH_PRICE_FIRST:
       sortedOffers.sort((a, b) => b.price > a.price ? 1 : -1);
       break;
-    case SORT_OPTIONS[3]:
+    case SortOptions.TOP_RATED_FIRST:
       sortedOffers.sort((a, b) => b.rating > a.rating ? 1 : -1);
       break;
   }

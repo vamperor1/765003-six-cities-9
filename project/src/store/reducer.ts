@@ -1,9 +1,9 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {changeCity, getOffers, changeSorting} from './action';
 import {getOffersByCity} from '../offers';
-import {InitialState} from '../types/state';
+import {OffersState} from '../types/state';
 
-const initialState: InitialState = {
+const initialState: OffersState = {
   city: 'Paris',
   offers: [],
   sortType: 'Popular',
