@@ -1,10 +1,13 @@
 import {store} from '../store/index.js';
 import {Offer} from './offers.js';
 
-export type OffersState = {
+export type InitialState = {
   city: string,
   offers: Offer[],
-  sortType: string
+  offersByCity: Offer[],
+  sortedOffers: Offer[],
+  sortType: string,
+  isDataLoaded: boolean
 }
 
 export type State = ReturnType<typeof store.getState>;

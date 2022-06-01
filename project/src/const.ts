@@ -4,9 +4,11 @@ export const MAX_RATING = 5;
 
 export const MAX_REVIEWS_COUNT = 10;
 
-export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+export const BACKEND_URL = 'https://9.react.pages.academy/six-cities';
 
-// export const SORT_OPTIONS = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
+export const REQUEST_TIMEOUT = 5000;
+
+export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 export const SortOptions = {
   POPULAR: 'Popular',
@@ -94,4 +96,11 @@ export const PlaceCardClasses: Classes = {
     [Placement.Favorites]: '110',
   },
 };
+
+export enum APIRoute {
+  Offers = '/hotels',
+  Favorite = '/favorite',
+  Comments = '/comments',
+  Login = '/login'
+}
 

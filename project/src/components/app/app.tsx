@@ -6,19 +6,24 @@ import MainScreen from '../main-screen/main-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import OfferScreen from '../offer-screen/offer-screen';
 import PrivateRoute from '../private-route/private-route';
-import {Offer} from '../../types/offers';
+import {useAppSelector} from '../../hooks';
+import LoadingScreen from '../loading-screen/loading-screen';
 
-type AppScreenProps = {
- offers: Offer[];
-}
+function App(): JSX.Element {
+  const {isDataLoaded} = useAppSelector((state) => state);
 
-function App({offers}: AppScreenProps): JSX.Element {
+  if (!isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainScreen offers={offers}/>}
+          element={<MainScreen />}
         />
         <Route
           path={AppRoute.SignIn}
@@ -28,13 +33,13 @@ function App({offers}: AppScreenProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <FavoritesScreen offers={offers} />
+              <FavoritesScreen />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Room}
-          element={<OfferScreen offers={offers}/>}
+          element={<OfferScreen />}
         />
         <Route
           path="*"

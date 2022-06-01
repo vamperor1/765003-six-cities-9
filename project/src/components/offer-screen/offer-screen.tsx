@@ -6,17 +6,14 @@ import OfferInsideList from '../offer-inside-list/offer-inside-list';
 import OfferGalleryList from '../offer-gallery-list/offer-gallery-list';
 import OffersList from '../offers-list/offers-list';
 import Map from '../map/map';
-import {Offer} from '../../types/offers';
 import {reviews} from '../../mocks/reviews';
 import {useParams} from 'react-router-dom';
 import {getPercentRating} from '../../utils';
 import {Placement} from '../../const';
+import {useAppSelector} from '../../hooks';
 
-type OfferScreenProps = {
-  offers: Offer[];
-}
-
-function OfferScreen({offers}: OfferScreenProps): JSX.Element {
+function OfferScreen(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const {id} = useParams<{id: string}>();
   const offer = id ? offers.find((it) => it.id === parseInt(id, 10)) : null;
 
