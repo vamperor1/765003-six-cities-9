@@ -7,7 +7,9 @@ export type InitialState = {
   offersByCity: Offer[],
   sortedOffers: Offer[],
   sortType: string,
-  isDataLoaded: boolean
+  isDataLoaded: boolean,
+  authorizationStatus: string,
+  error: string,
 }
 
 export type State = ReturnType<typeof store.getState>;

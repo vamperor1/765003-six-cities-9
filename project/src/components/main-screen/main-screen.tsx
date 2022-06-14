@@ -7,6 +7,7 @@ import {useAppSelector} from '../../hooks/';
 function MainScreen(): JSX.Element {
   const offersByCity = useAppSelector((state) => state.sortedOffers);
   const isEmpty = offersByCity.length > 0;
+  console.log(useAppSelector((state) => state.authorizationStatus));
 
   return (
     <div className="page page--gray page--main">

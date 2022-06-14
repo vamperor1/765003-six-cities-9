@@ -4,11 +4,15 @@ export const MAX_RATING = 5;
 
 export const MAX_REVIEWS_COUNT = 10;
 
+export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+
 export const BACKEND_URL = 'https://9.react.pages.academy/six-cities';
+
+export const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
 
 export const REQUEST_TIMEOUT = 5000;
 
-export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+export const TIMEOUT_SHOW_ERROR = 2000;
 
 export const SortOptions = {
   POPULAR: 'Popular',
@@ -101,6 +105,12 @@ export enum APIRoute {
   Offers = '/hotels',
   Favorite = '/favorite',
   Comments = '/comments',
-  Login = '/login'
+  Login = '/login',
+  Logout = '/logout'
 }
 
+export enum HTTP_CODE {
+  BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
+  NOT_FOUND = 404,
+}
