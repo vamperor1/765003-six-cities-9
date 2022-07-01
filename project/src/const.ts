@@ -12,8 +12,6 @@ export const AUTH_TOKEN_KEY_NAME = 'six-cities-token';
 
 export const REQUEST_TIMEOUT = 5000;
 
-export const TIMEOUT_SHOW_ERROR = 2000;
-
 export const SortOptions = {
   POPULAR: 'Popular',
   LOW_PRICE_FIRST: 'Price: low to high',
@@ -25,7 +23,8 @@ export enum AppRoute {
   Root = '/',
   SignIn = '/login',
   Favorites = '/favorites',
-  Room = '/offer/:id'
+  Room = '/offer/:id',
+  Other = '*',
 }
 
 export enum AuthorizationStatus {

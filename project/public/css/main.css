@@ -4,6 +4,16 @@
 .not-found__link {
   display: block;
 }
+
 .not-found__status, .not-found__link {
   text-align: center;
 }
+
+.reviews__fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+
+

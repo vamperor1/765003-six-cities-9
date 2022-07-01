@@ -2,11 +2,9 @@ import Header from '../header/header';
 import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import {useRef, FormEvent} from 'react';
-import {useNavigate} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
 import {loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
-// import {errorHandle} from '../../services/error-handle';
 
 const spaces = new RegExp('\\s');
 const letters = new RegExp('[A-Za-z]');
@@ -17,11 +15,9 @@ function LoginScreen(): JSX.Element {
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
-  const onSubmit = async (authData: AuthData) => {
-    await dispatch(loginAction(authData));
-    navigate(AppRoute.Root);
+  const onSubmit = (authData: AuthData) => {
+    dispatch(loginAction(authData));
   };
 
   const validatePassword = () => {
