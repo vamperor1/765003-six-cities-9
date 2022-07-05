@@ -18,10 +18,7 @@ export const errorHandle = (error: ErrorType): void => {
         toast.info(response.data.error);
         break;
       case HTTP_CODE.UNAUTHORIZED:
-        // TODO: Не знаю, какую обработку этой ошибки можно здесь сделать.
-        // Всё реализуется на уровне функционала компонентов.
-
-        // toast.info(response.data.error);
+        toast.info(response.data.error);
         break;
       case HTTP_CODE.NOT_FOUND:
         store.dispatch(redirectToRoute(AppRoute.Other));

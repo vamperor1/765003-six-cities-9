@@ -23,15 +23,15 @@ function LoginScreen(): JSX.Element {
   const validatePassword = () => {
     const passwordValue = passwordRef.current?.value;
 
-    if (passwordValue) {
+    if (passwordValue && passwordRef.current) {
       if (!letters.test(passwordValue)) {
-        passwordRef.current?.setCustomValidity('Must contain at least one letter');
+        passwordRef.current.setCustomValidity('Must contain at least one letter');
       } else if (!numbers.test(passwordValue)) {
-        passwordRef.current?.setCustomValidity('Must contain at least one number');
+        passwordRef.current.setCustomValidity('Must contain at least one number');
       } else if (spaces.test(passwordValue)) {
-        passwordRef.current?.setCustomValidity('No spaces available');
+        passwordRef.current.setCustomValidity('No spaces available');
       } else {
-        passwordRef.current?.setCustomValidity('');
+        passwordRef.current.setCustomValidity('');
       }
     }
   };

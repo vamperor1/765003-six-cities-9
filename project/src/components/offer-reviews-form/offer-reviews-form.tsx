@@ -1,22 +1,22 @@
 import OfferReviewsRating from '../offer-reviews-rating/offer-reviews-rating';
-import { useState, useRef, FormEvent } from 'react';
-import { REVIEWS_RATING } from '../../const';
-import { postReviewAction } from '../../store/api-actions';
-import { useAppDispatch } from '../../hooks';
-import { ReviewData } from '../../types/review';
+import {useState, useRef, FormEvent} from 'react';
+import {REVIEWS_RATING, ReviewLength} from '../../const';
+import {postReviewAction} from '../../store/api-actions';
+import {useAppDispatch} from '../../hooks';
+import {ReviewData} from '../../types/review';
 
 type OfferReviewsFormProps = {
   id: string;
 }
 
-function OfferReviewsForm({ id }: OfferReviewsFormProps): JSX.Element {
+function OfferReviewsForm({id}: OfferReviewsFormProps): JSX.Element {
   const [rating, setRating] = useState('');
   const [review, setReview] = useState('');
   const dispatch = useAppDispatch();
 
   const formRef = useRef<HTMLFormElement | null>(null);
   const fieldsetRef = useRef<HTMLFieldSetElement | null>(null);
-  const isReviewValid = rating.length > 0 && (review.length > 50 && review.length < 300);
+  const isReviewValid = rating.length > 0 && (review.length > ReviewLength.Min && review.length < ReviewLength.Max);
 
   const resetForm = () => {
     if (formRef.current !== null) {

@@ -4,6 +4,8 @@ export const MAX_RATING = 5;
 
 export const MAX_REVIEWS_COUNT = 10;
 
+export const MAX_IMAGES_COUNT = 6;
+
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 export const BACKEND_URL = 'https://9.react.pages.academy/six-cities';
@@ -18,6 +20,11 @@ export const SortOptions = {
   HIGH_PRICE_FIRST: 'Price: high to low',
   TOP_RATED_FIRST: 'Top rated first',
 } as const;
+
+export enum ReviewLength {
+  Min = 50,
+  Max = 300
+}
 
 export enum AppRoute {
   Root = '/',

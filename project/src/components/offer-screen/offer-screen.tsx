@@ -9,7 +9,7 @@ import Map from '../map/map';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import {useParams} from 'react-router-dom';
 import {getPercentRating} from '../../utils';
-import {Placement, AuthorizationStatus} from '../../const';
+import {MAX_IMAGES_COUNT, Placement, AuthorizationStatus} from '../../const';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {useEffect} from 'react';
 import {fetchOfferDetailsAction, fetchNearOffersAction, fetchReviewsAction} from '../../store/api-actions';
@@ -33,9 +33,6 @@ function OfferScreen(): JSX.Element {
     dispatch(fetchReviewsAction(id));
   }, [dispatch, id]);
 
-  console.log(isOfferDetailsDataLoaded, isNearOffersDataLoaded, isReviewsDataLoaded);
-
-
   if (!isOfferDetailsDataLoaded || !isNearOffersDataLoaded || !isReviewsDataLoaded) {
     return (
       <LoadingScreen />
@@ -58,7 +55,7 @@ function OfferScreen(): JSX.Element {
   } user__avatar-wrapper`;
 
   const shownType = type.slice(0, 1).toUpperCase() + type.slice(1);
-  const shownImages = images.length > 6 ? images.slice(0, 6) : images;
+  const shownImages = images.length > MAX_IMAGES_COUNT ? images.slice(0, MAX_IMAGES_COUNT) : images;
 
   const starRating = getPercentRating(rating);
 
