@@ -1,0 +1,32 @@
+import request from 'axios';
+import {store} from '../store';
+import {redirectToRoute} from '../store/action';
+import {ErrorType} from '../types/error';
+import {HTTP_CODE, AppRoute} from '../const';
+import {toast} from 'react-toastify';
+
+export const errorHandle = (error: ErrorType): void => {
+  if (!request.isAxiosError(error)) {
+    throw error;
+  }
+
+  const {response} = error;
+
+  if (response) {
+    switch (response.status) {
+      case HTTP_CODE.BAD_REQUEST:
+        toast.info(response.data.error);
+        break;
+      case HTTP_CODE.UNAUTHORIZED:
+        // TODO: Не знаю, какую обработку этой ошибки можно здесь сделать.
+        // Всё реализуется на уровне функционала компонентов.
+
+        // toast.info(response.data.error);
+        break;
+      case HTTP_CODE.NOT_FOUND:
+        store.dispatch(redirectToRoute(AppRoute.Other));
+        toast.info(response.data.error);
+        break;
+    }
+  }
+};

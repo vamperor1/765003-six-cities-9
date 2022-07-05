@@ -1,10 +1,22 @@
-import {store} from '../store/index.js';
-import {Offer} from './offers.js';
+import {store} from '../store/index';
+import {Offer} from './offers';
+import {Review} from './reviews';
 
-export type OffersState = {
+export type InitialState = {
   city: string,
   offers: Offer[],
-  sortType: string
+  offerDetails: Offer | null,
+  offersByCity: Offer[],
+  sortedOffers: Offer[],
+  nearOffers: Offer[],
+  reviews: Review[],
+  sortType: string,
+  isOffersDataLoaded: boolean,
+  isOfferDetailsDataLoaded: boolean,
+  isNearOffersDataLoaded: boolean,
+  isReviewsDataLoaded: boolean,
+  authorizationStatus: string,
+  error: string,
 }
 
 export type State = ReturnType<typeof store.getState>;

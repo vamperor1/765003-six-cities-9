@@ -1,24 +1,31 @@
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {Route, Routes} from 'react-router-dom';
+import {AppRoute} from '../../const';
 import FavoritesScreen from '../favorites-screen/favorites-screen';
 import LoginScreen from '../login-screen/login-screen';
 import MainScreen from '../main-screen/main-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import OfferScreen from '../offer-screen/offer-screen';
 import PrivateRoute from '../private-route/private-route';
-import {Offer} from '../../types/offers';
+import {useAppSelector} from '../../hooks';
+import LoadingScreen from '../loading-screen/loading-screen';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
-type AppScreenProps = {
- offers: Offer[];
-}
+function App(): JSX.Element {
+  const {isOffersDataLoaded} = useAppSelector((state) => state);
 
-function App({offers}: AppScreenProps): JSX.Element {
+  if (!isOffersDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainScreen offers={offers}/>}
+          element={<MainScreen />}
         />
         <Route
           path={AppRoute.SignIn}
@@ -27,21 +34,21 @@ function App({offers}: AppScreenProps): JSX.Element {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <FavoritesScreen offers={offers} />
+            <PrivateRoute>
+              <FavoritesScreen />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Room}
-          element={<OfferScreen offers={offers}/>}
+          element={<OfferScreen />}
         />
         <Route
-          path="*"
+          path={AppRoute.Other}
           element={<NotFoundScreen />}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 

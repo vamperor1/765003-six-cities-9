@@ -6,7 +6,6 @@ import {getRouteWithId} from '../../utils';
 import {PlaceCardClasses} from '../../const';
 import {Placement} from '../../const';
 
-
 type PlaceCardProps = {
   offer: Offer;
   placement: Placement;
@@ -57,7 +56,9 @@ function PlaceCard({placement, offer, setActiveOfferId}: PlaceCardProps): JSX.El
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={getRouteWithId(id, AppRoute.Room)}>{title}</Link>
+          <Link to={getRouteWithId(id, AppRoute.Room)}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

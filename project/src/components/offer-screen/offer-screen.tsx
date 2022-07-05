@@ -1,37 +1,65 @@
 import Header from '../header/header';
 import OfferReviewsList from '../offer-reviews-list/offer-reviews-list';
 import OfferReviewsForm from '../offer-reviews-form/offer-reviews-form';
-import NotFoundScreen from '../not-found-screen/not-found-screen';
+import LoadingScreen from '../loading-screen/loading-screen';
 import OfferInsideList from '../offer-inside-list/offer-inside-list';
 import OfferGalleryList from '../offer-gallery-list/offer-gallery-list';
 import OffersList from '../offers-list/offers-list';
 import Map from '../map/map';
-import {Offer} from '../../types/offers';
-import {reviews} from '../../mocks/reviews';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
 import {useParams} from 'react-router-dom';
 import {getPercentRating} from '../../utils';
-import {Placement} from '../../const';
+import {Placement, AuthorizationStatus} from '../../const';
+import {useAppSelector, useAppDispatch} from '../../hooks';
+import {useEffect} from 'react';
+import {fetchOfferDetailsAction, fetchNearOffersAction, fetchReviewsAction} from '../../store/api-actions';
 
-type OfferScreenProps = {
-  offers: Offer[];
-}
+function OfferScreen(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const id = useParams<{id: string}>().id || '';
 
-function OfferScreen({offers}: OfferScreenProps): JSX.Element {
-  const {id} = useParams<{id: string}>();
-  const offer = id ? offers.find((it) => it.id === parseInt(id, 10)) : null;
+  const offer = useAppSelector((state) => state.offerDetails);
+  const nearOffers = useAppSelector((state) => state.nearOffers);
+  const reviews = useAppSelector((state) => state.reviews);
+  const authStatus = useAppSelector((state) => state.authorizationStatus);
+
+  const {isOfferDetailsDataLoaded} = useAppSelector((state) => state);
+  const {isNearOffersDataLoaded} = useAppSelector((state) => state);
+  const {isReviewsDataLoaded} = useAppSelector((state) => state);
+
+  useEffect (() => {
+    dispatch(fetchOfferDetailsAction(id));
+    dispatch(fetchNearOffersAction(id));
+    dispatch(fetchReviewsAction(id));
+  }, [dispatch, id]);
+
+  console.log(isOfferDetailsDataLoaded, isNearOffersDataLoaded, isReviewsDataLoaded);
+
+
+  if (!isOfferDetailsDataLoaded || !isNearOffersDataLoaded || !isReviewsDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   if (!offer) {
-    return <NotFoundScreen />;
+    return (
+      <NotFoundScreen />
+    );
   }
 
   const {isPremium, title, rating, type, bedrooms, maxAdults, price, description, images} = offer;
   const {name, isPro, avatarUrl} = offer.host;
+
+  const isAuthorized = authStatus === AuthorizationStatus.Auth;
+
   const avatarClass = `property__avatar-wrapper ${
     isPro ? 'property__avatar-wrapper--pro' : null
   } user__avatar-wrapper`;
+
   const shownType = type.slice(0, 1).toUpperCase() + type.slice(1);
   const shownImages = images.length > 6 ? images.slice(0, 6) : images;
-  const nearOffers = offers.slice(0, 3);
+
   const starRating = getPercentRating(rating);
 
   return (
@@ -114,17 +142,24 @@ function OfferScreen({offers}: OfferScreenProps): JSX.Element {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                 {
                   reviews.length > 0 &&
-                  <OfferReviewsList reviews={reviews}/>
+                  <>
+                    <h2 className="reviews__title">
+                      Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
+                    </h2>
+                    <OfferReviewsList reviews={reviews}/>
+                  </>
                 }
-                <OfferReviewsForm />
+                {
+                  isAuthorized &&
+                  <OfferReviewsForm id={id} />
+                }
               </section>
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={offers} activeId={offer.id}/>
+            <Map offers={[...nearOffers, offer]} activeId={offer.id}/>
           </section>
         </section>
         <div className="container">
