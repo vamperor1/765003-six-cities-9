@@ -4,7 +4,10 @@ import {AxiosInstance} from 'axios';
 import {Offer} from '../types/offers';
 import {Review} from '../types/reviews';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
-import {getOffers, loadOffers, loadOfferDetails, loadNearOffers, loadReviews, requireAuthorization, resetDataLoadingFlag, redirectToRoute} from './action';
+import {redirectToRoute} from './action';
+import {loadOffers, getOffers, resetDataLoadingFlag, loadOfferDetails, loadNearOffers} from './offers-data/offers-data';
+import {resetDataLoadingFlag as resetReviewsLoadingFlag, loadReviews} from './reviews-data/reviewsData';
+import {requireAuthorization} from './user-process/user-process';
 import {saveToken, dropToken} from '../services/token';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
@@ -70,7 +73,7 @@ export const fetchReviewsAction = createAsyncThunk<void, string, {
   'data/fetchOffers',
   async (id, {dispatch, extra: api}) => {
     try {
-      dispatch(resetDataLoadingFlag('isReviewsDataLoaded'));
+      dispatch(resetReviewsLoadingFlag('isReviewsDataLoaded'));
       const {data} = await api.get<Review[]>(`${APIRoute.Comments}/${id}`);
       dispatch(loadReviews(data));
     } catch (error) {

@@ -3,9 +3,10 @@ import FavoritesScreenEmpty from '../favorites-screen-empty/favorites-screen-emp
 import Header from '../header/header';
 import Footer from '../footer/footer';
 import {useAppSelector} from '../../hooks';
+import {getSortedOffers} from '../../store/offers-data/selectors';
 
 function FavoritesScreen(): JSX.Element {
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector(getSortedOffers);
   const favorites = offers.filter((offer) => offer.isFavorite);
   const isEmpty = favorites.length === 0;
 

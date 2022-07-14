@@ -13,19 +13,23 @@ import {MAX_IMAGES_COUNT, Placement, AuthorizationStatus} from '../../const';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {useEffect} from 'react';
 import {fetchOfferDetailsAction, fetchNearOffersAction, fetchReviewsAction} from '../../store/api-actions';
+import {getOfferDetails, getNearOffers, getLoadedOfferDetailsDataStatus, getLoadedNearOffersDataStatus} from '../../store/offers-data/selectors';
+import {getReviews, getLoadedReviewsData} from '../../store/reviews-data/selectors';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+
 
 function OfferScreen(): JSX.Element {
   const dispatch = useAppDispatch();
   const id = useParams<{id: string}>().id || '';
 
-  const offer = useAppSelector((state) => state.offerDetails);
-  const nearOffers = useAppSelector((state) => state.nearOffers);
-  const reviews = useAppSelector((state) => state.reviews);
-  const authStatus = useAppSelector((state) => state.authorizationStatus);
+  const offer = useAppSelector(getOfferDetails);
+  const nearOffers = useAppSelector(getNearOffers);
+  const reviews = useAppSelector(getReviews);
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
-  const {isOfferDetailsDataLoaded} = useAppSelector((state) => state);
-  const {isNearOffersDataLoaded} = useAppSelector((state) => state);
-  const {isReviewsDataLoaded} = useAppSelector((state) => state);
+  const isOfferDetailsDataLoaded = useAppSelector(getLoadedOfferDetailsDataStatus);
+  const isNearOffersDataLoaded = useAppSelector(getLoadedNearOffersDataStatus);
+  const isReviewsDataLoaded = useAppSelector(getLoadedReviewsData);
 
   useEffect (() => {
     dispatch(fetchOfferDetailsAction(id));
