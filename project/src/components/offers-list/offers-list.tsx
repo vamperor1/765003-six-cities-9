@@ -2,6 +2,7 @@ import PlaceCard from '../place-card/place-card';
 import {Offer} from '../../types/offers';
 import {PlaceCardClasses} from '../../const';
 import {Placement} from '../../const';
+import {memo} from 'react';
 
 type OffersListProps = {
   offers: Offer[];
@@ -25,4 +26,4 @@ function OffersList({offers, placement, setActiveOfferId}: OffersListProps): JSX
   );
 }
 
-export default OffersList;
+export default memo(OffersList);

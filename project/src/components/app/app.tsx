@@ -10,9 +10,10 @@ import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
+import {getLoadedOffersDataStatus} from '../../store/offers-data/selectors';
 
 function App(): JSX.Element {
-  const {isOffersDataLoaded} = useAppSelector((state) => state);
+  const isOffersDataLoaded = useAppSelector(getLoadedOffersDataStatus);
 
   if (!isOffersDataLoaded) {
     return (

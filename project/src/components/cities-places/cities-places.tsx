@@ -5,13 +5,14 @@ import {Offer} from '../../types/offers';
 import {Placement} from '../../const';
 import {useState} from 'react';
 import {useAppSelector} from '../../hooks/';
+import {getCity} from '../../store/offers-data/selectors';
 
 type CitiesPlacesProps = {
   offers: Offer[];
 }
 
 function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element {
-  const city = useAppSelector((state) => state.city);
+  const city = useAppSelector(getCity);
   const [activeId, setActiveOfferId] = useState<null | number>(null);
 
   return (
@@ -22,7 +23,11 @@ function CitiesPlaces({offers}: CitiesPlacesProps): JSX.Element {
           {offers.length} {offers.length > 1 ? 'places' : 'place'} to stay in {city}
         </b>
         <SortMenu />
-        <OffersList offers={offers} placement={Placement.City} setActiveOfferId={setActiveOfferId} />
+        <OffersList
+          offers={offers}
+          placement={Placement.City}
+          setActiveOfferId={setActiveOfferId}
+        />
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">

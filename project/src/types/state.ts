@@ -1,22 +1,34 @@
 import {store} from '../store/index';
 import {Offer} from './offers';
 import {Review} from './reviews';
+import {AuthorizationStatus} from '../const';
 
-export type InitialState = {
-  city: string,
+export type UserProcess = {
+  authorizationStatus: AuthorizationStatus,
+  isAuthorizationComplete: boolean
+};
+
+export type OffersData = {
   offers: Offer[],
-  offerDetails: Offer | null,
+  city: string,
+  sortType: string,
   offersByCity: Offer[],
   sortedOffers: Offer[],
   nearOffers: Offer[],
-  reviews: Review[],
-  sortType: string,
   isOffersDataLoaded: boolean,
+  offerDetails: Offer | null,
   isOfferDetailsDataLoaded: boolean,
   isNearOffersDataLoaded: boolean,
+}
+
+export type ReviewsData = {
+  reviews: Review[],
   isReviewsDataLoaded: boolean,
-  authorizationStatus: string,
-  error: string,
+}
+
+export type FavoritesData = {
+  favorites: Offer[],
+  isFavoritesDataLoaded: boolean,
 }
 
 export type State = ReturnType<typeof store.getState>;

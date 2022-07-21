@@ -1,5 +1,6 @@
 import CitiesTabsItem from '../cities-tabs-item/cities-tabs-item';
 import {CITIES} from '../../const';
+import {memo} from 'react';
 
 function CitiesTabs(): JSX.Element {
   return (
@@ -13,4 +14,4 @@ function CitiesTabs(): JSX.Element {
   );
 }
 
-export default CitiesTabs;
+export default memo(CitiesTabs);

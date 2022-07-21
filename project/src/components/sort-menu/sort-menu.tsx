@@ -1,11 +1,13 @@
 import {SortOptions} from '../../const';
 import {useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks/';
-import {changeSorting} from '../../store/action';
+import {changeSorting} from '../../store/offers-data/offers-data';
+import {getSortType} from '../../store/offers-data/selectors';
+import {memo} from 'react';
 
 function SortMenu(): JSX.Element {
   const [isMenuOpened, setMenuFlag] = useState(false);
-  const sortType = useAppSelector((state) => state.sortType);
+  const sortType = useAppSelector(getSortType);
 
   const dispatch = useAppDispatch();
 
@@ -40,4 +42,4 @@ function SortMenu(): JSX.Element {
   );
 }
 
-export default SortMenu;
+export default memo(SortMenu);

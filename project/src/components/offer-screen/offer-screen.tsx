@@ -12,20 +12,24 @@ import {getPercentRating} from '../../utils';
 import {MAX_IMAGES_COUNT, Placement, AuthorizationStatus} from '../../const';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {useEffect} from 'react';
-import {fetchOfferDetailsAction, fetchNearOffersAction, fetchReviewsAction} from '../../store/api-actions';
+import {fetchOfferDetailsAction, fetchNearOffersAction, fetchReviewsAction, setFavoriteAction} from '../../store/api-actions';
+import {getOfferDetails, getNearOffers, getLoadedOfferDetailsDataStatus, getLoadedNearOffersDataStatus} from '../../store/offers-data/selectors';
+import {getReviews, getLoadedReviewsData} from '../../store/reviews-data/selectors';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+
 
 function OfferScreen(): JSX.Element {
   const dispatch = useAppDispatch();
   const id = useParams<{id: string}>().id || '';
 
-  const offer = useAppSelector((state) => state.offerDetails);
-  const nearOffers = useAppSelector((state) => state.nearOffers);
-  const reviews = useAppSelector((state) => state.reviews);
-  const authStatus = useAppSelector((state) => state.authorizationStatus);
+  const offer = useAppSelector(getOfferDetails);
+  const nearOffers = useAppSelector(getNearOffers);
+  const reviews = useAppSelector(getReviews);
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
-  const {isOfferDetailsDataLoaded} = useAppSelector((state) => state);
-  const {isNearOffersDataLoaded} = useAppSelector((state) => state);
-  const {isReviewsDataLoaded} = useAppSelector((state) => state);
+  const isOfferDetailsDataLoaded = useAppSelector(getLoadedOfferDetailsDataStatus);
+  const isNearOffersDataLoaded = useAppSelector(getLoadedNearOffersDataStatus);
+  const isReviewsDataLoaded = useAppSelector(getLoadedReviewsData);
 
   useEffect (() => {
     dispatch(fetchOfferDetailsAction(id));
@@ -59,6 +63,11 @@ function OfferScreen(): JSX.Element {
 
   const starRating = getPercentRating(rating);
 
+  const handleFavoriteClick = () => {
+    const favoriteStatus = offer.isFavorite ? 0 : 1;
+    dispatch(setFavoriteAction({id: offer.id, status: favoriteStatus}));
+  };
+
   return (
     <div className="page">
       <Header />
@@ -80,7 +89,11 @@ function OfferScreen(): JSX.Element {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
+                <button
+                  onClick={handleFavoriteClick}
+                  className={`property__bookmark-button button ${offer.isFavorite ? 'property__bookmark-button--active' : null}`}
+                  type="button"
+                >
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>

@@ -1,1 +1,5 @@
-export type ResetAction = 'isOffersDataLoaded' | 'isOfferDetailsDataLoaded' | 'isNearOffersDataLoaded' | 'isReviewsDataLoaded';
+export type ResetOffersAction = 'isOffersDataLoaded' | 'isOfferDetailsDataLoaded' | 'isNearOffersDataLoaded';
+
+export type ResetReviewsAction = 'isReviewsDataLoaded';
+
+export type ResetFavoritesAction = 'isFavoritesDataLoaded';
