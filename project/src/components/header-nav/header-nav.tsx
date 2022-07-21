@@ -3,13 +3,16 @@ import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {logoutAction} from '../../store/api-actions';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {useNavigate} from 'react-router-dom';
 
 function HeaderNav(): JSX.Element {
   const authStatus = useAppSelector(getAuthorizationStatus);
   const isAuthorized = authStatus === AuthorizationStatus.Auth;
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleLogOutClick = () => dispatch(logoutAction());
+  const handleFavoritesClick = () => navigate(AppRoute.Favorites);
 
   return (
     <nav className="header__nav">
@@ -20,7 +23,7 @@ function HeaderNav(): JSX.Element {
             </div>
             {
               isAuthorized
-                ? <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                ? <span onClick={handleFavoritesClick} className="header__user-name user__name">Oliver.conner@gmail.com</span>
                 : <span className="header__login">Sign in</span>
             }
           </Link>

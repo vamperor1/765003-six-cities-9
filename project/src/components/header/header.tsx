@@ -1,6 +1,7 @@
 import HeaderNav from '../header-nav/header-nav';
 import {AppRoute} from '../../const';
 import {Link, useLocation} from 'react-router-dom';
+import {memo} from 'react';
 
 function Header(): JSX.Element {
   const location = useLocation();
@@ -24,4 +25,4 @@ function Header(): JSX.Element {
   );
 }
 
-export default Header;
+export default memo(Header);

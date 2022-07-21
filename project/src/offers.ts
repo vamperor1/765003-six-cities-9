@@ -29,3 +29,18 @@ export const sortReviews = (reviews: Review[]): Review[] => {
 
   return sortedReviews;
 };
+
+export const changeFavoriteOffer = (state: Offer[], favorite: Offer): void => {
+  for (const offer of state) {
+    if (offer.id === favorite.id) {
+      offer.isFavorite = favorite.isFavorite;
+      break;
+    }
+  }
+};
+
+export const changeOfferDetails = (state: Offer | null, favorite: Offer): void => {
+  if (state && state.id === favorite.id) {
+    state.isFavorite = favorite.isFavorite;
+  }
+};

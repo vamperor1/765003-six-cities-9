@@ -4,6 +4,7 @@ import {UserProcess} from '../../types/state';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
+  isAuthorizationComplete: false,
 };
 
 export const userProcess = createSlice({
@@ -12,6 +13,7 @@ export const userProcess = createSlice({
   reducers: {
     requireAuthorization: (state, action) => {
       state.authorizationStatus = action.payload;
+      state.isAuthorizationComplete = true;
     },
   },
 });

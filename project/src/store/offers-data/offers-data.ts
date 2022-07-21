@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {NameSpace, SortOptions} from '../../const';
 import {OffersData} from '../../types/state';
-import {getOffersByCity, sortOffers} from '../../offers';
+import {getOffersByCity, sortOffers, changeFavoriteOffer, changeOfferDetails} from '../../offers';
 import {ResetOffersAction} from '../../types/action';
 
 
@@ -57,7 +57,22 @@ export const offersData = createSlice({
       const dataTypeFlag = action.payload;
       state[dataTypeFlag] = false;
     },
+    changeFavorites: (state, action) => {
+      const favorite = action.payload;
+      changeFavoriteOffer(state.offers, favorite);
+      changeFavoriteOffer(state.nearOffers, favorite);
+      changeOfferDetails(state.offerDetails, favorite);
+    },
   },
 });
 
-export const {loadOffers, loadOfferDetails, loadNearOffers, getOffers, changeCity, changeSorting, resetDataLoadingFlag} = offersData.actions;
+export const {
+  loadOffers,
+  loadOfferDetails,
+  loadNearOffers,
+  getOffers,
+  changeCity,
+  changeSorting,
+  resetDataLoadingFlag,
+  changeFavorites,
+} = offersData.actions;

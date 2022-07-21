@@ -5,13 +5,15 @@ import {Offer} from '../types/offers';
 import {Review} from '../types/reviews';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {redirectToRoute} from './action';
-import {loadOffers, getOffers, resetDataLoadingFlag, loadOfferDetails, loadNearOffers} from './offers-data/offers-data';
+import {loadOffers, getOffers, resetDataLoadingFlag, loadOfferDetails, loadNearOffers, changeFavorites} from './offers-data/offers-data';
 import {resetDataLoadingFlag as resetReviewsLoadingFlag, loadReviews} from './reviews-data/reviewsData';
+import {resetDataLoadingFlag as resetFavoritesLoadingFlag, loadFavorites, removeFavorite} from './favorites-data/favorites-data';
 import {requireAuthorization} from './user-process/user-process';
 import {saveToken, dropToken} from '../services/token';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {ReviewData} from '../types/review';
+import {FavoriteData} from '../types/favorite-data';
 import {errorHandle} from '../services/error-handle';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -97,6 +99,41 @@ export const postReviewAction = createAsyncThunk<void, ReviewData, {
     } catch(error) {
       errorHandle(error);
       unblockForm();
+    }
+  },
+);
+
+export const fetchFavoritesAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchFavorites',
+  async (_arg, {dispatch, extra: api}) => {
+    try {
+      dispatch(resetFavoritesLoadingFlag('isFavoritesDataLoaded'));
+      const {data} = await api.get<Offer[]>(APIRoute.Favorite);
+      dispatch(loadFavorites(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const setFavoriteAction = createAsyncThunk<void, FavoriteData, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'user/login',
+  async ({id, status}, {dispatch, extra: api}) => {
+    try {
+      const {data} = await api.post<Offer>(`${APIRoute.Favorite}/${id}/${status}`);
+      dispatch(removeFavorite(data));
+      dispatch(changeFavorites(data));
+      dispatch(getOffers());
+    } catch(error) {
+      errorHandle(error);
     }
   },
 );

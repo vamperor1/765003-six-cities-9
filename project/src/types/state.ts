@@ -4,7 +4,8 @@ import {Review} from './reviews';
 import {AuthorizationStatus} from '../const';
 
 export type UserProcess = {
-  authorizationStatus: AuthorizationStatus
+  authorizationStatus: AuthorizationStatus,
+  isAuthorizationComplete: boolean
 };
 
 export type OffersData = {
@@ -23,6 +24,11 @@ export type OffersData = {
 export type ReviewsData = {
   reviews: Review[],
   isReviewsDataLoaded: boolean,
+}
+
+export type FavoritesData = {
+  favorites: Offer[],
+  isFavoritesDataLoaded: boolean,
 }
 
 export type State = ReturnType<typeof store.getState>;
