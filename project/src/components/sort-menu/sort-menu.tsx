@@ -1,9 +1,8 @@
 import {SortOptions} from '../../const';
-import {useState} from 'react';
+import {useState, memo} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks/';
 import {changeSorting} from '../../store/offers-data/offers-data';
 import {getSortType} from '../../store/offers-data/selectors';
-import {memo} from 'react';
 
 function SortMenu(): JSX.Element {
   const [isMenuOpened, setMenuFlag] = useState(false);
