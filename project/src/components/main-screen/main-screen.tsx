@@ -3,10 +3,11 @@ import Header from '../header/header';
 import CitiesPlaces from '../cities-places/cities-places';
 import MainScreenEmpty from '../main-screen-empty/main-screen-empty';
 import {useAppSelector} from '../../hooks/';
+import {getSortedOffers} from '../../store/offers-data/selectors';
 
 function MainScreen(): JSX.Element {
-  const offersByCity = useAppSelector((state) => state.sortedOffers);
-  const isEmpty = offersByCity.length > 0;
+  const sortedOffers = useAppSelector(getSortedOffers);
+  const isEmpty = sortedOffers.length > 0;
 
   return (
     <div className="page page--gray page--main">
@@ -23,7 +24,7 @@ function MainScreen(): JSX.Element {
           >
             {
               isEmpty
-                ? <CitiesPlaces offers={offersByCity}/>
+                ? <CitiesPlaces offers={sortedOffers}/>
                 : <MainScreenEmpty />
             }
           </div>

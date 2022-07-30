@@ -9,7 +9,7 @@ type FavoritesItemProps = {
   cityName: string;
 }
 
-function FavoritesItem({ favorites, cityName }: FavoritesItemProps): JSX.Element {
+function FavoritesItem({favorites, cityName}: FavoritesItemProps): JSX.Element {
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">

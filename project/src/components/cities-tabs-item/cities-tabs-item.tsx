@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks/';
-import {changeCity, getOffers} from '../../store/action';
+import {changeCity, getOffers} from '../../store/offers-data/offers-data';
+import {getCity} from '../../store/offers-data/selectors';
 
 type CitiesTabsItemProps = {
   cityName: string;
@@ -8,7 +9,7 @@ type CitiesTabsItemProps = {
 
 function CitiesTabsItem({cityName}: CitiesTabsItemProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const currentCity = useAppSelector((state) => state.city);
+  const currentCity = useAppSelector(getCity);
   const isActive = cityName === currentCity;
 
   const handleCityChange = (evt: React.SyntheticEvent) => {
